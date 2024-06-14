@@ -1,3 +1,5 @@
+"use client"
+import React from 'React';
 import CardSection from "@/components/CardSection";
 import Header from "@/components/Header";
 
