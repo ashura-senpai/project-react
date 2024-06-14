@@ -1,5 +1,5 @@
 "use client"
-import React from 'React';
+import React from 'react';
 import CardSection from "@/components/CardSection";
 import Header from "@/components/Header";
 
