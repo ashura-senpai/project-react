@@ -3,11 +3,20 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import CardSection from "@/components/CardSection";
+import Image from 'next/image';
 
 export default function Evolucoes() {
   const searchParams = useSearchParams();
   const evolucao = searchParams.get('evolucao');
   const [pokeData, setPokeData] = useState<any>(null);
+
+  const Evolucoes = () => {
+    return (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Evolucoes/>
+      </Suspense>
+    );
+  };
 
   useEffect(() => {
     if (evolucao) {
@@ -31,11 +40,5 @@ export default function Evolucoes() {
         <p>Carregando...</p>
       )}
     </main>
-  );
-
-  const EvolucoesPageWrapper = () => (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Evolucoes/>
-    </Suspense>
   );
 }
