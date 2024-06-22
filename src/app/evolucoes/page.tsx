@@ -1,22 +1,14 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import CardSection from "@/components/CardSection";
 import Image from 'next/image';
 
-export default function Evolucoes() {
+function Evolucoes() {
   const searchParams = useSearchParams();
   const evolucao = searchParams.get('evolucao');
   const [pokeData, setPokeData] = useState<any>(null);
-
-  const Evolucoes = () => {
-    return (
-      <Suspense fallback={<div>Loading...</div>}>
-        <Evolucoes/>
-      </Suspense>
-    );
-  };
 
   useEffect(() => {
     if (evolucao) {
@@ -34,7 +26,7 @@ export default function Evolucoes() {
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       {pokeData ? (
         <CardSection titulo={evolucao}>
-          <img src={pokeData.sprites.front_default} alt={evolucao} />
+          <Image src={pokeData.sprites.front_default} alt={evolucao} width={200} height={200} />
         </CardSection>
       ) : (
         <p>Carregando...</p>
@@ -42,3 +34,13 @@ export default function Evolucoes() {
     </main>
   );
 }
+
+const EvolucoesPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <Evolucoes />
+    </Suspense>
+  );
+};
+
+export default EvolucoesPage;
